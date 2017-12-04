@@ -1,17 +1,27 @@
-import './App.css'
+import './App.scss'
 
 import React, {Component} from 'react'
 
+import Header from './header/index'
+import Main from './main/index'
+import Lottery from './lottery'
+
 class App extends Component {
+  constructor () {
+    super()
+    this.state = { openNumber: '' }
+  }
+  
+  componentDidMount () {
+
+    this.setState({openNumber: '456'})
+  }
   render() {
     return <div className="App">
-      <div className="App-heading App-flex">
-        <h2> <span className="App-react">React</span></h2>
-      </div>
-      <div className="App-instructions App-flex">
-        <img className="App-logo" src={require('./react.svg')}/>
-        <p>Edit <code>src/App.js</code> and save to hot reload your changes.</p>
-      </div>
+      <Header/>
+      <Main/>
+      <Lottery a={this.state.openNumber} />
+        {/* <img className="App-logo" src={require('./react.svg')}/> */}
     </div>
   }
 }
