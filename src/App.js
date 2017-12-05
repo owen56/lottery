@@ -1,10 +1,11 @@
+import { Link, Route, Switch } from 'react-router-dom'
 import './App.scss'
 
 import React, {Component} from 'react'
 
 import Header from './header/index'
 import Main from './main/index'
-import Lottery from './lottery'
+import Home from './main/home'
 
 class App extends Component {
   constructor () {
@@ -19,9 +20,11 @@ class App extends Component {
   render() {
     return <div className="App">
       <Header/>
-      <Main/>
-      <Lottery a={this.state.openNumber} />
-        {/* <img className="App-logo" src={require('./react.svg')}/> */}
+      <Switch>
+        <Route path='/lottery' component={Main} exact={true} />
+        <Route path='/' component={Home} exact={true} />
+      </Switch>
+      {/* <img className="App-logo" src={require('./react.svg')}/> */}
     </div>
   }
 }

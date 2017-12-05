@@ -12,8 +12,10 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "fetch-jsonp": "^1.1.3",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "nwb": "0.20.x",

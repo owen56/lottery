@@ -17,3 +17,6 @@ ul,li {
 .pull-right {
   float: right;
 }
+.c-red {
+  color: #f30000;
+}

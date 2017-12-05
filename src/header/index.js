@@ -1,7 +1,7 @@
+import { Link, Route, Switch } from 'react-router-dom'
 import './index.scss'
 
 import React, {Component} from 'react'
-
 import Notice from './notice'
 
 class Header extends Component {
@@ -23,9 +23,13 @@ class Header extends Component {
         <div className="header-menu-content">
           <div className="header-menu-logo pull-left"></div>
           <div className="header-menu-list pull-right">
-            <div className="header-menu-list-btn pull-left">我的账户</div>
+            <div className="header-menu-list-btn pull-left">
+              <Link className="" to="/">我的账户</Link>
+            </div>
+            <div className="header-menu-list-btn pull-left">
+              <Link className="" to="/lottery">投注记录</Link>
+            </div>
             <div className="header-menu-list-btn pull-left">银行充提</div>
-            <div className="header-menu-list-btn pull-left">投注记录</div>
             <div className="header-menu-list-btn pull-left">账户报表</div>
             <div className="header-menu-list-btn pull-left">代理管理</div>
             <div className="header-menu-list-btn pull-left">优惠活动</div>

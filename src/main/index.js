@@ -1,38 +1,60 @@
 import './index.scss'
 
 import React, {Component} from 'react'
+import fetchJsonp from 'fetch-jsonp'
 
 import Timer from './timer'
 import Number from './number'
 import History from './history'
 
 class Main extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      data: [
+        {
+          expect: '2017000000',//期号
+          opencode: '00,00,00,00,00',//奖号
+          opentime: '2017-12-04 00:00:00',//剩余时间
+          opentimestamp: '2017000000'//历史奖期
+        }
+      ]
+    }
+  }
+
+
+  fetchDataXhr = () => {
+    return fetchJsonp('http://f.apiplus.cn/bj11x5.json', {
+      method: 'GET',
+      mode: 'cors',
+    })
+  }
+
+  componentDidMount() {
+    this.fetchDataXhr()
+      .then(response => response.json())
+      .then((json) => {
+        console.log(json.data)
+        const firstExpect = json.data[0].expect;
+        const secondExpect = json.data[1].expect;
+        const firstOpentime = json.data[0].opentime.slice(10);
+        const secondOpencode = json.data[1].opencode;
+        this.setState({
+          firstExpect,
+          secondExpect,
+          firstOpentime,
+          secondOpencode,
+          data: json.data
+        })
+      })
+  } 
+  
   render() {
     return <div className="main">
-      <div className="pull-left">
-        <div>第150227479期 离截止时间</div>
-        <div>00:18:58</div>
-      </div>
-      <div className="pull-left">
-        <div>11选5 第150227478期号码</div>
-        <div>
-            <div className="lottery-num pull-left">07</div>
-            <div className="lottery-num pull-left">03</div>
-            <div className="lottery-num pull-left">04</div>
-            <div className="lottery-num pull-left">05</div>
-            <div className="lottery-num pull-left">01</div>
-        </div>
-      </div>
-      <div className="pull-right">
-        <div>期次 开奖号码</div>
-        <div>
-            <ul>
-                <li>120844 09 01 10 05 02</li>
-                <li>120844 09 01 10 05 02</li>
-                <li>120844 09 01 10 05 02</li>
-            </ul>
-        </div>
-      </div>
+      <Timer expect={this.state.firstExpect} opentime={this.state.firstOpentime}/>
+      <Number expect={this.state.secondExpect} opencode={this.state.secondOpencode}/>
+      <History dataList={this.state.data}/>
     </div>
   }
 }
