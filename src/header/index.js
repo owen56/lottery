@@ -27,7 +27,7 @@ class Header extends Component {
               <Link className="" to="/">我的账户</Link>
             </div>
             <div className="header-menu-list-btn pull-left">
-              <Link className="" to="/lottery">投注记录</Link>
+              <Link className="" to="/home">投注记录</Link>
             </div>
             <div className="header-menu-list-btn pull-left">银行充提</div>
             <div className="header-menu-list-btn pull-left">账户报表</div>
